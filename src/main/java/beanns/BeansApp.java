@@ -1,5 +1,6 @@
 package beanns;
 
+import io.micrometer.tracing.Tracer;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
@@ -29,22 +30,19 @@ public class BeansApp {
     }
 
     @Bean
-//    DynamicBeanDefinitionRegistrar r(RestTemplate t) { // the trace ids doesn't print on log
-        DynamicBeanDefinitionRegistrar r() { //trace ids print on log
-        return new DynamicBeanDefinitionRegistrar();//TODO: pass RestTemplate to the dynamically created bean
+    BeanRegistry reg(RestTemplate t) { //Issue 1: the trace ids doesn't print on log
+//    BeanRegistry reg(Tracer tr) { //Issue 2: the trace ids doesn't print on log
+//    BeanRegistry reg() { // NON ISSUE: trace ids print on log
+        return new BeanRegistry();//TODO: pass RestTemplate and Tracer to the dynamically created bean
     }
 }
 
 
 @RequiredArgsConstructor
-class DynamicBeanDefinitionRegistrar implements BeanDefinitionRegistryPostProcessor {
+class BeanRegistry implements BeanDefinitionRegistryPostProcessor {
 
     @Override
     public void postProcessBeanDefinitionRegistry(BeanDefinitionRegistry reg) throws BeansException {
-    }
-
-    @Override
-    public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
     }
 }
 
