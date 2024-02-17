@@ -31,7 +31,7 @@ public class BeansApp {
 
     @Bean
     BeanRegistry reg(RestTemplate t) { //Issue 1: the trace ids doesn't print on log
-//    BeanRegistry reg(Tracer tr) { //Issue 2: the trace ids doesn't print on log
+//    BeanRegistry reg(Tracer tr) { //Issue 2: throws Failed to instantiate [org.springframework.boot.actuate.autoconfigure.tracing.BravePropagationConfigurations$PropagationWithBaggage]: No default constructor found
 //    BeanRegistry reg() { // NON ISSUE: trace ids print on log
         return new BeanRegistry();//TODO: pass RestTemplate and Tracer to the dynamically created bean
     }
