@@ -1,0 +1,7 @@
+app:
+  name: helo
+  beans:
+    - name: FirstSet-AB
+      classes: [ beanns.ABean, beanns.BBean ]
+    - name: SecondSet-BC
+      classes: [ beanns.CBean, beanns.DBean ]
